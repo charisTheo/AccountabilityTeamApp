@@ -1,5 +1,8 @@
 package com.charistheo.accountabilityteam
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -8,8 +11,15 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
+
+private var mePromises: Int? = null
+private var buddyPromises: Int? = null
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -18,17 +28,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        me.layoutParams.height = 20
+        buddy.layoutParams.height = 20
+
+        buddyPromises = buddyColumn.childCount - 1
+        mePromises = meColumn.childCount - 1 // minus one due to the button profile at the top
+
+        for (child in 1..buddyPromises!!) {
+            buddyColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
+            buddyColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
+        }
+
+        for (child in 1..mePromises!!) {
+            meColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
+            meColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
+        }
     }
 
     override fun onBackPressed() {
@@ -60,25 +80,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_camera -> {
                 // Handle the camera action
+                this.snackBar("Not yet implemented")
             }
             R.id.nav_gallery -> {
-
+                this.snackBar("Nope!")
             }
             R.id.nav_slideshow -> {
-
+                this.snackBar("As well..")
             }
             R.id.nav_manage -> {
-
+                this.snackBar("Not yet implemented")
             }
             R.id.nav_share -> {
-
+                this.snackBar("Not yet implemented")
             }
             R.id.nav_send -> {
-
+                this.snackBar("Not yet implemented")
             }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private fun Context.snackBar(text: String) = Snackbar.make(contentMainLayout, text, Snackbar.LENGTH_LONG)
+            .setAction("Action", null).show()
+
+    //Open AddPromiseActivity on click
+    fun openAddPromise(v: View) {
+        startActivity(Intent(baseContext, AddPromiseActivity::class.java))
+    }
 }
+

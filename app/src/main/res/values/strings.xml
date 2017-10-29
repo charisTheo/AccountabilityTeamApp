@@ -5,4 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="me_profile">Me</string>
+    <string name="buddy_profile">Buddy</string>
+    <string name="title_activity_add_promise">AddPromiseActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
