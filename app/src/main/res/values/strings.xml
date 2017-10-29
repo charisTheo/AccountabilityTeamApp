@@ -9,4 +9,19 @@
     <string name="buddy_profile">Buddy</string>
     <string name="title_activity_add_promise">AddPromiseActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="add_promise_title">Add new promise</string>
+    <string name="add_promise_phrase1">I promise to</string>
+    <string name="until_textView">until</string>
+
+    <string-array name="promises">
+        <item>not masturbate</item>
+        <item>eat healthy</item>
+        <item>study</item>
+        <item>not smoke</item>
+        <item>sleep</item>
+        <item>not drink</item>
+        <item>take cold showers</item>
+        <item>meditate</item>
+    </string-array>
+
 </resources>

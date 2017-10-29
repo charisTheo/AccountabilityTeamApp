@@ -1,19 +1,16 @@
 package com.charistheo.accountabilityteam
 
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
 
@@ -42,10 +39,13 @@ class AddPromiseActivity : AppCompatActivity() {
         // Set up the ViewPager with the sections adapter.
         container.adapter = mSectionsPagerAdapter
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        previous.setOnClickListener {
+//            TODO("Show previous fragment")
         }
+        next.setOnClickListener {
+//            TODO("Show next fragment")
+        }
+
 
     }
 
@@ -97,6 +97,9 @@ class AddPromiseActivity : AppCompatActivity() {
                                   savedInstanceState: Bundle?): View? {
             val rootView = inflater.inflate(R.layout.fragment_add_promise, container, false)
             rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
+            val arrayAdapter = ArrayAdapter.createFromResource(rootView.context, R.array.promises, R.layout.support_simple_spinner_dropdown_item)
+            arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            rootView.promisesSpinner.adapter = arrayAdapter
             return rootView
         }
 

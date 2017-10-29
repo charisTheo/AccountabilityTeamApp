@@ -1,9 +1,10 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="30dp"
     tools:context="com.charistheo.accountabilityteam.AddPromiseActivity$PlaceholderFragment">
 
     <TextView
@@ -19,4 +20,34 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/section_label"
+        android:text="@string/add_promise_phrase1" />
+
+    <Spinner
+        android:id="@+id/promisesSpinner"
+        android:layout_toEndOf="@id/textView2"
+        android:layout_width="277dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/promisesSpinner"
+        android:text="@string/until_textView" />
+
+    <EditText
+        android:id="@+id/dateUntil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/section_label"
+        android:ems="10"
+        android:inputType="date" />
+
+
+</android.widget.RelativeLayout>
