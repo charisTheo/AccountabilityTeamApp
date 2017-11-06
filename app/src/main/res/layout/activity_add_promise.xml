@@ -28,6 +28,15 @@
 
         </android.support.v7.widget.Toolbar>
 
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="3"
+            android:progress="1" />
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -44,8 +53,7 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
-        android:background="@android:drawable/arrow_up_float"
-        android:rotation="270" />
+        android:background="@drawable/ic_keyboard_arrow_left_black_24px" />
 
     <Button
         android:id="@+id/next"
@@ -54,15 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
         android:layout_weight="1"
-        android:background="@android:drawable/arrow_down_float"
-        android:rotation="270" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="3"
-        android:progress="1" />
+        android:background="@drawable/ic_keyboard_arrow_right_black_24px" />
 
 </android.support.design.widget.CoordinatorLayout>

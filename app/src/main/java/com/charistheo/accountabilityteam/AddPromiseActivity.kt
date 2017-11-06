@@ -37,7 +37,16 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
 
     //on change page listener for updating the discrete seek bar
     override fun onPageSelected(position: Int) {
-        seekBar.progress = position
+        seekBar.progress = position + 1
+        fragmentPosition = position
+        if (position == 2) {
+            next.alpha = 0.35F
+        } else if (position == 0){
+            previous.alpha = 0.35F
+        } else {
+            next.alpha = 1F
+            previous.alpha = 1F
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
