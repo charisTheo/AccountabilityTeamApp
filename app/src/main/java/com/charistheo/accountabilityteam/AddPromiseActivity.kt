@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -14,7 +15,14 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
 
-class AddPromiseActivity : AppCompatActivity() {
+class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener {
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//        TODO("not implemented")
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+//        TODO("not implemented")
+    }
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -25,6 +33,12 @@ class AddPromiseActivity : AppCompatActivity() {
      * [android.support.v4.app.FragmentStatePagerAdapter].
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    private var fragmentPosition = 1
+
+    //on change page listener for updating the discrete seek bar
+    override fun onPageSelected(position: Int) {
+        seekBar.progress = position
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +53,17 @@ class AddPromiseActivity : AppCompatActivity() {
         // Set up the ViewPager with the sections adapter.
         container.adapter = mSectionsPagerAdapter
 
+        //set on change page listener to update the discrete seek bar
+        container.addOnPageChangeListener(this)
+
+        //all of the pages will stay in memory all the time cached
+        container.offscreenPageLimit = 2
+
         previous.setOnClickListener {
-//            TODO("Show previous fragment")
+            container.currentItem = fragmentPosition--
         }
         next.setOnClickListener {
-//            TODO("Show next fragment")
+            container.currentItem = fragmentPosition++
         }
 
 
