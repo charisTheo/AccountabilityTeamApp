@@ -12,6 +12,8 @@
     <string name="add_promise_title">Add new promise</string>
     <string name="add_promise_phrase1">I promise to</string>
     <string name="until_textView">until</string>
+    <string name="promise_title">Promise</string>
+    <string name="promise_description">Description</string>
 
     <string-array name="promises">
         <item>not masturbate</item>
