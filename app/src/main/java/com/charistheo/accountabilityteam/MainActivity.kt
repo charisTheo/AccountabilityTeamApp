@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 
-private var mePromises: Int? = null
-private var buddyPromises: Int? = null
+//private var mePromises: Int? = null
+//private var buddyPromises: Int? = null
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,21 +34,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        me.layoutParams.height = 20
-        buddy.layoutParams.height = 20
-
-        buddyPromises = buddyColumn.childCount - 1
-        mePromises = meColumn.childCount - 1 // minus one due to the button profile at the top
-
-        for (child in 1..buddyPromises!!) {
-            buddyColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
-            buddyColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
-        }
-
-        for (child in 1..mePromises!!) {
-            meColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
-            meColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
-        }
+//        buddyPromises = buddyColumn.childCount - 1
+//        mePromises = meColumn.childCount - 1 // minus one due to the button profile at the top
+//
+//        for (child in 1..buddyPromises!!) {
+//            buddyColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
+//            buddyColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
+//        }
+//
+//        for (child in 1..mePromises!!) {
+//            meColumn.getChildAt(child).setBackgroundColor(Color.rgb(Random().nextInt(200), Random().nextInt(200), Random().nextInt(200)))
+//            meColumn.getChildAt(child).layoutParams.height = Random().nextInt(70 - 10) + 10
+//        }
     }
 
     override fun onBackPressed() {
