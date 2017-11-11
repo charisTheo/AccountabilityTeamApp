@@ -28,10 +28,15 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private var adapter: DummyPromiseAdapter? = null
-    private var dummyPromiseList: ArrayList<DummyPromise>? = null
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var dummyPromise = DummyPromise()
+    private var myAdapter: DummyPromiseAdapter? = null
+    private var myDummyPromiseList: ArrayList<DummyPromise>? = null
+    private var myLayoutManager: RecyclerView.LayoutManager? = null
+    private var myDummyPromise = DummyPromise()
+
+    private var buddyAdapter: DummyPromiseAdapter? = null
+    private var buddyPromiseList: ArrayList<DummyPromise>? = null
+    private var buddyLayoutManager: RecyclerView.LayoutManager? = null
+    private var buddyDummyPromise = DummyPromise()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,21 +49,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        dummyPromiseList = ArrayList<DummyPromise>()
-        layoutManager = LinearLayoutManager(this)
-        adapter = DummyPromiseAdapter(dummyPromiseList!!, this)
+        myDummyPromiseList = ArrayList<DummyPromise>()
+        myLayoutManager = LinearLayoutManager(this)
+        myAdapter = DummyPromiseAdapter(myDummyPromiseList!!, this)
 
-        //setup list (RecyclerView)
-        meRecyclerView.layoutManager = layoutManager
-        meRecyclerView.adapter = adapter
+        buddyPromiseList = ArrayList<DummyPromise>()
+        buddyLayoutManager = LinearLayoutManager(this)
+        buddyAdapter = DummyPromiseAdapter(buddyPromiseList!!, this)
+
+        //setup lists (RecyclerView)
+        meRecyclerView.layoutManager = myLayoutManager
+        meRecyclerView.adapter = myAdapter
+
+        buddyRecyclerView.layoutManager = buddyLayoutManager
+        buddyRecyclerView.adapter = buddyAdapter
 
         //add dummy promises
-        dummyPromise = DummyPromise()
-        dummyPromise.title = "Do not smoke for a week"
-        dummyPromise.description = "I have been smoking for 12 years and is about time to quit"
-        dummyPromiseList!!.add(dummyPromise)
+        myDummyPromise.title = "I promise not to smoke"
+        myDummyPromise.description = "I will not smoke for a week"
+        myDummyPromiseList!!.add(myDummyPromise)
+        myAdapter!!.notifyDataSetChanged()
 
-        adapter!!.notifyDataSetChanged()
+        buddyDummyPromise.title = "I promise to wash my teeth"
+        buddyDummyPromise.description = "Twice a day, one in the morning one at night"
+        buddyPromiseList!!.add(buddyDummyPromise)
+        buddyAdapter!!.notifyDataSetChanged()
+
 
 
 //        buddyPromises = buddyColumn.childCount - 1
