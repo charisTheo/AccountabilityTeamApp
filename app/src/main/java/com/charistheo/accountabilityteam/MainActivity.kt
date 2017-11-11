@@ -9,19 +9,29 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.charistheo.accountabilityteam.models.DummyPromise
+import com.charistheo.accountabilityteam.models.DummyPromiseAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
+import kotlinx.android.synthetic.main.dashboard_main.*
+import kotlin.collections.ArrayList
 
 //private var mePromises: Int? = null
 //private var buddyPromises: Int? = null
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private var adapter: DummyPromiseAdapter? = null
+    private var dummyPromiseList: ArrayList<DummyPromise>? = null
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var dummyPromise = DummyPromise()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +43,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        dummyPromiseList = ArrayList<DummyPromise>()
+        layoutManager = LinearLayoutManager(this)
+        adapter = DummyPromiseAdapter(dummyPromiseList!!, this)
+
+        //setup list (RecyclerView)
+        meRecyclerView.layoutManager = layoutManager
+        meRecyclerView.adapter = adapter
+
+        //add dummy promises
+        dummyPromise = DummyPromise()
+        dummyPromise.title = "Do not smoke for a week"
+        dummyPromise.description = "I have been smoking for 12 years and is about time to quit"
+        dummyPromiseList!!.add(dummyPromise)
+
+        adapter!!.notifyDataSetChanged()
+
 
 //        buddyPromises = buddyColumn.childCount - 1
 //        mePromises = meColumn.childCount - 1 // minus one due to the button profile at the top
