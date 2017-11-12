@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.dashboard_main.*
+import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
 
 //private var mePromises: Int? = null
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var buddyAdapter: DummyPromiseAdapter? = null
     private var buddyPromiseList: ArrayList<DummyPromise>? = null
     private var buddyLayoutManager: RecyclerView.LayoutManager? = null
-    private var buddyDummyPromise = DummyPromise()
+    private var buddyDummyPromise: DummyPromise? = null
+
+    private var dummyDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,13 +68,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         buddyRecyclerView.adapter = buddyAdapter
 
         //add dummy promises
-        myDummyPromise.title = "I promise not to smoke"
-        myDummyPromise.description = "I will not smoke for a week"
+        myDummyPromise = DummyPromise("I promise not to smoke", "I will not smoke for a week", dummyDate)
         myDummyPromiseList!!.add(myDummyPromise)
         myAdapter!!.notifyDataSetChanged()
 
-        buddyDummyPromise.title = "I promise to wash my teeth"
-        buddyDummyPromise.description = "Twice a day, one in the morning one at night"
+
+        buddyDummyPromise = DummyPromise("I promise to wash my teeth", "Twice a day, one in the morning one at night", dummyDate)
         buddyPromiseList!!.add(buddyDummyPromise)
         buddyAdapter!!.notifyDataSetChanged()
 
