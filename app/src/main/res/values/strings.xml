@@ -14,6 +14,7 @@
     <string name="until_textView">until</string>
     <string name="promise_title">Promise</string>
     <string name="promise_description">Description</string>
+    <string name="from_textView">from</string>
 
     <string-array name="promises">
         <item>not masturbate</item>

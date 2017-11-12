@@ -41,27 +41,25 @@
                 android:text="@string/promise_description"
                 android:textAlignment="center" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:layout_below="@id/promiseDescription"
                 android:layout_centerHorizontal="true"
-                android:ems="10"
-                android:inputType="date"
-                android:textColor="@color/colorAccent" />
+                android:text="@string/from_textView"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dateStart"
                 android:layout_centerHorizontal="true"
-                android:textSize="12sp"
-                android:ems="10"
-                android:inputType="date"
-                android:textColor="@color/colorPrimary" />
+                android:text="@string/until_textView"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
 
         </RelativeLayout>
 
