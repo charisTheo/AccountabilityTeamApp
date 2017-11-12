@@ -1,51 +1,45 @@
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="30dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:padding="12dp"
     tools:context="com.charistheo.accountabilityteam.AddPromiseActivity$PlaceholderFragment">
-
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/section_label"
+        android:layout_alignStart="@id/relLayout"
         android:text="@string/add_promise_phrase1" />
 
     <Spinner
         android:id="@+id/promisesSpinner"
-        android:layout_toEndOf="@id/textView2"
         android:layout_width="277dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/promisesSpinner"
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="20dp"
+        android:labelFor="@id/dateUntil"
         android:text="@string/until_textView" />
 
     <EditText
         android:id="@+id/dateUntil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/section_label"
+        android:layout_alignBottom="@id/textView6"
+        android:layout_below="@id/promisesSpinner"
+        android:layout_toEndOf="@id/textView6"
         android:ems="10"
         android:inputType="date" />
 

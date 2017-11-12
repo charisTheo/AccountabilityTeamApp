@@ -43,14 +43,14 @@ class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
             val description: TextView = itemView.findViewById<View>(R.id.promiseDescription) as TextView
             val dateStart: EditText = itemView.findViewById<View>(R.id.dateStart) as EditText
             val dateEnd: EditText = itemView.findViewById<View>(R.id.dateEnd) as EditText
-            val stringBuilder = StringBuilder(SimpleDateFormat.getDateInstance().format("dd/mm/yy"))
-            stringBuilder.append(SimpleDateFormat.getDateInstance().format("dd/mm/yy").toString())
+            val stringBuilder = StringBuilder(SimpleDateFormat.getDateInstance().toString())
+            stringBuilder.append(SimpleDateFormat.getDateInstance().toString())
 
             title.text = dummyPromise.title
             description.text = dummyPromise.description
             dateEnd.setText(dummyPromise.dateEnd, TextView.BufferType.EDITABLE)
             dateStart.setText(stringBuilder, TextView.BufferType.EDITABLE)
-            dummyPromise.dateStart = SimpleDateFormat.getDateInstance().format("dd/mm/yy")
+            dummyPromise.dateStart = stringBuilder.toString()
         }
     }
 

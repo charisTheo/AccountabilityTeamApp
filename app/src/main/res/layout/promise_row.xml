@@ -21,7 +21,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="91dp"
+            android:layout_height="wrap_content"
             android:padding="12dp">
 
             <TextView
@@ -43,23 +43,25 @@
 
             <EditText
                 android:id="@+id/dateStart"
-                android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_toStartOf="@id/dateStart"
+                android:textSize="12sp"
+                android:layout_below="@id/promiseDescription"
+                android:layout_centerHorizontal="true"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColor="@color/colorAccent" />
 
             <EditText
                 android:id="@+id/dateEnd"
-                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@id/dateStart"
+                android:layout_below="@id/dateStart"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColor="@color/colorPrimary" />
 
         </RelativeLayout>
 

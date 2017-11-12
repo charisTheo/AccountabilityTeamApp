@@ -1,19 +1,26 @@
 package com.charistheo.accountabilityteam
 
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_promise.*
+import kotlinx.android.synthetic.main.fragment_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
+import java.text.SimpleDateFormat
+import java.time.Year
+import java.util.*
 
 class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener {
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -121,14 +128,19 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
      * A placeholder fragment containing a simple view.
      */
     class PlaceholderFragment : Fragment() {
-
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
             val rootView = inflater.inflate(R.layout.fragment_add_promise, container, false)
-            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
             val arrayAdapter = ArrayAdapter.createFromResource(rootView.context, R.array.promises, R.layout.support_simple_spinner_dropdown_item)
+//            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
+
             arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
             rootView.promisesSpinner.adapter = arrayAdapter
+
+            rootView.dateUntil.setOnClickListener{
+                val datePickerFragment: DialogFragment = DatePickerFragment()
+                datePickerFragment.show(childFragmentManager, "datePicker")
+            }
             return rootView
         }
 
@@ -151,5 +163,22 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
                 return fragment
             }
         }
+    }
+
+    class DatePickerFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val calendar = SimpleDateFormat.getDateInstance().calendar
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            return DatePickerDialog(activity, this, year, month, day)
+        }
+
+        override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
+            val fullDate = "$day/$month/$year"
+            dateUntil.setText(fullDate, TextView.BufferType.EDITABLE)
+        }
+
     }
 }
