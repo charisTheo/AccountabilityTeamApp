@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -132,6 +133,10 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
             var rootView: View? = null
             var numberPicker: NumberPicker? = null
             var promisesSpinner: Spinner? = null
+            var stakeView: TextView? = null
+            var promiseView: TextView? = null
+            var fromView: TextView? = null
+            var untilView: TextView? = null
 
             when (arguments.getInt(ARG_SECTION_NUMBER)) {
                 1 -> {
@@ -162,7 +167,16 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
                 }
                 3 -> {
                     rootView = inflater.inflate(R.layout.fragment_overview, container, false)
-//                    rootView.stake.text = arguments["stake"]
+                    promiseView = rootView.findViewById<View>(R.id.promiseView) as TextView
+                    fromView = rootView.findViewById<View>(R.id.fromView) as TextView
+                    untilView = rootView.findViewById<View>(R.id.untilView) as TextView
+                    stakeView = rootView.findViewById<View>(R.id.stakeValueView) as TextView
+
+                    promiseView.text = String.format(getString(R.string.add_promise_phrase1) + arguments.get("promise"))
+                    TODO("get date values")
+                    fromView.text = String.format(arguments.get())
+                    untilView.text = String.format(arguments.get())
+                    stakeView.text = arguments.get("stake").toString()
                 }
             }
 //            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))

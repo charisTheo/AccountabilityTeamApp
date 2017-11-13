@@ -40,7 +40,7 @@ class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
             val description: TextView = itemView.findViewById<View>(R.id.promiseDescription) as TextView
             val dateStart = itemView.findViewById<View>(R.id.dateStart) as TextView
             val dateEnd = itemView.findViewById<View>(R.id.dateEnd) as TextView
-            val stakeView = itemView.findViewById<View>(R.id.stakeView) as TextView
+            val stakeView = itemView.findViewById<View>(R.id.stakeValueView) as TextView
             val ds = SimpleDateFormat.getDateInstance().toString()
 
             title.text = dummyPromise.title

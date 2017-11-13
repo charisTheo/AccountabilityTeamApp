@@ -17,6 +17,7 @@
     <string name="from_textView">from</string>
     <string name="add_stake_hint">What\'s the bet?</string>
     <string name="currency">€</string>
+    <string name="stake">Stake</string>
 
     <string-array name="promises">
         <item>not masturbate</item>
