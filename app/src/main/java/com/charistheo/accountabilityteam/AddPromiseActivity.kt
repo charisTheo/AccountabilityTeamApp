@@ -2,6 +2,7 @@ package com.charistheo.accountabilityteam
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -125,18 +126,29 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
     /**
      * A placeholder fragment containing a simple view.
      */
-    class PlaceholderFragment : Fragment(), View.OnClickListener {
+    class PlaceholderFragment : Fragment(), View.OnClickListener, NumberPicker.OnValueChangeListener {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
             var rootView: View? = null
             var numberPicker: NumberPicker? = null
+            var promisesSpinner: Spinner? = null
 
             when (arguments.getInt(ARG_SECTION_NUMBER)) {
                 1 -> {
                     rootView = inflater.inflate(R.layout.fragment_add_promise, container, false)
                     val arrayAdapter = ArrayAdapter.createFromResource(rootView.context, R.array.promises, R.layout.support_simple_spinner_dropdown_item)
                     arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-                    rootView.promisesSpinner.adapter = arrayAdapter
+                    promisesSpinner = rootView.findViewById<Spinner>(R.id.promisesSpinner) as Spinner
+                    promisesSpinner.adapter = arrayAdapter
+                    promisesSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+                        override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
+                            arguments.putString("promise", parent!!.getItemAtPosition(position).toString())
+
+                        }
+                    }
                     rootView.dateFrom.setOnClickListener(this)
                     rootView.dateUntil.setOnClickListener(this)
                 }
@@ -146,15 +158,19 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
                     numberPicker.minValue = 1
                     numberPicker.maxValue = 100
                     numberPicker.value = 5
+                    numberPicker.setOnValueChangedListener(this)
                 }
                 3 -> {
-//                    TODO("create the fragment_add_toCalendar.xml file")
-//                    rootView = inflater.inflate(R.layout.fragment_add_toCalendar, container, false)
-
+                    rootView = inflater.inflate(R.layout.fragment_overview, container, false)
+//                    rootView.stake.text = arguments["stake"]
                 }
             }
 //            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
             return rootView
+        }
+
+        override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
+            arguments.putInt("stake", newVal)
         }
 
         override fun onClick(v: View?) {
