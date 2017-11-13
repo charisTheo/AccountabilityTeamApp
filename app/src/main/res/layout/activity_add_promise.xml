@@ -24,6 +24,7 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:title="@string/add_promise_title">
 
         </android.support.v7.widget.Toolbar>

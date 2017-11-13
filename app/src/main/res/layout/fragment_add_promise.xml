@@ -1,5 +1,4 @@
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relLayout"
     android:layout_width="match_parent"
@@ -15,11 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/relLayout"
-        android:text="@string/add_promise_phrase1" />
+        android:text="@string/add_promise_phrase1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
 
     <Spinner
         android:id="@+id/promisesSpinner"
-        android:layout_width="277dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
@@ -31,14 +32,16 @@
         android:layout_below="@id/textView2"
         android:layout_marginTop="20dp"
         android:labelFor="@id/dateFrom"
-        android:text="@string/from_textView" />
+        android:text="@string/from_textView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/dateFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/textView5"
-        android:layout_alignRight="@+id/promisesSpinner"
+        android:layout_alignEnd="@+id/promisesSpinner"
         android:layout_below="@id/promisesSpinner"
         android:layout_toEndOf="@id/textView5"
         android:ems="10"
@@ -51,14 +54,16 @@
         android:layout_below="@id/textView5"
         android:layout_marginTop="20dp"
         android:labelFor="@id/dateUntil"
-        android:text="@string/until_textView" />
+        android:text="@string/until_textView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/dateUntil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/textView6"
-        android:layout_alignRight="@+id/promisesSpinner"
+        android:layout_alignEnd="@+id/promisesSpinner"
         android:layout_below="@id/dateFrom"
         android:layout_toEndOf="@id/textView6"
         android:ems="10"

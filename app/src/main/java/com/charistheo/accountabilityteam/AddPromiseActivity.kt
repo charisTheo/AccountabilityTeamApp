@@ -2,7 +2,6 @@ package com.charistheo.accountabilityteam
 
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -10,7 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -18,10 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_promise.*
-import kotlinx.android.synthetic.main.fragment_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener {
@@ -132,15 +128,32 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
     class PlaceholderFragment : Fragment(), View.OnClickListener {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
-            val rootView = inflater.inflate(R.layout.fragment_add_promise, container, false)
-            val arrayAdapter = ArrayAdapter.createFromResource(rootView.context, R.array.promises, R.layout.support_simple_spinner_dropdown_item)
+            var rootView: View? = null
+            var numberPicker: NumberPicker? = null
+
+            when (arguments.getInt(ARG_SECTION_NUMBER)) {
+                1 -> {
+                    rootView = inflater.inflate(R.layout.fragment_add_promise, container, false)
+                    val arrayAdapter = ArrayAdapter.createFromResource(rootView.context, R.array.promises, R.layout.support_simple_spinner_dropdown_item)
+                    arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+                    rootView.promisesSpinner.adapter = arrayAdapter
+                    rootView.dateFrom.setOnClickListener(this)
+                    rootView.dateUntil.setOnClickListener(this)
+                }
+                2 -> {
+                    rootView = inflater.inflate(R.layout.fragment_add_stake, container, false)
+                    numberPicker = rootView.findViewById<View>(R.id.numberPicker) as NumberPicker
+                    numberPicker.minValue = 1
+                    numberPicker.maxValue = 100
+                    numberPicker.value = 5
+                }
+                3 -> {
+//                    TODO("create the fragment_add_toCalendar.xml file")
+//                    rootView = inflater.inflate(R.layout.fragment_add_toCalendar, container, false)
+
+                }
+            }
 //            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
-
-            arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-            rootView.promisesSpinner.adapter = arrayAdapter
-            rootView.dateFrom.setOnClickListener(this)
-            rootView.dateUntil.setOnClickListener(this)
-
             return rootView
         }
 
