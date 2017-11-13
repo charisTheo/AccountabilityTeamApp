@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import com.charistheo.accountabilityteam.R
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 
 class DummyPromise (t: String, d: String?, de: String) {
@@ -41,16 +42,15 @@ class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
         fun bindDummyPromise(dummyPromise: DummyPromise) {
             val title: TextView = itemView.findViewById<View>(R.id.promiseTitle) as TextView
             val description: TextView = itemView.findViewById<View>(R.id.promiseDescription) as TextView
-            val dateStart: EditText = itemView.findViewById<View>(R.id.dateStart) as EditText
-            val dateEnd: EditText = itemView.findViewById<View>(R.id.dateEnd) as EditText
-            val stringBuilder = StringBuilder(SimpleDateFormat.getDateInstance().toString())
-            stringBuilder.append(SimpleDateFormat.getDateInstance().toString())
+            val dateStart = itemView.findViewById<View>(R.id.dateStart) as TextView
+            val dateEnd = itemView.findViewById<View>(R.id.dateEnd) as TextView
+            val ds = SimpleDateFormat.getDateInstance().toString()
 
             title.text = dummyPromise.title
             description.text = dummyPromise.description
-            dateEnd.setText(dummyPromise.dateEnd, TextView.BufferType.EDITABLE)
-            dateStart.setText(stringBuilder, TextView.BufferType.EDITABLE)
-            dummyPromise.dateStart = stringBuilder.toString()
+            dateStart.text = ds
+            dateEnd.text = dummyPromise.dateEnd
+            dummyPromise.dateStart = ds
         }
     }
 

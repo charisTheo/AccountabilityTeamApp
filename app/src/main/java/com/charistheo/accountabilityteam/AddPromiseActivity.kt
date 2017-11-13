@@ -2,7 +2,6 @@ package com.charistheo.accountabilityteam
 
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.app.FragmentTransaction
 import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
@@ -11,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.*
 import kotlinx.android.synthetic.main.fragment_add_promise.view.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener {
@@ -143,30 +144,12 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
             return rootView
         }
 
-        override fun onClick(p0: View?) {
+        override fun onClick(v: View?) {
             val datePickerFragment: DialogFragment = DatePickerFragment()
-            TODO("Fix the datePickerFragment closing")
-            val fm = activity.supportFragmentManager.beginTransaction()
-            fm.addToBackStack("datePickerFragment")
+            val b = Bundle()
+            b.putInt("id", v!!.id)
+            datePickerFragment.arguments = b
             datePickerFragment.show(activity.supportFragmentManager, "datePicker")
-        }
-
-        class DatePickerFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
-            override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-                val calendar = SimpleDateFormat.getDateInstance().calendar
-                val year = calendar.get(Calendar.YEAR)
-                val month = calendar.get(Calendar.MONTH)
-                val day = calendar.get(Calendar.DAY_OF_MONTH)
-                return DatePickerDialog(activity, this, year, month, day)
-            }
-            override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
-                val fullDate = "$day/$month/$year"
-                when (view!!.focusedChild.id) {
-                    R.id.dateUntil -> dateUntil.setText(fullDate, TextView.BufferType.EDITABLE)
-                    R.id.dateFrom -> dateFrom.setText(fullDate, TextView.BufferType.EDITABLE)
-                }
-            }
-
         }
 
         companion object {
@@ -190,18 +173,22 @@ class AddPromiseActivity() : AppCompatActivity(), ViewPager.OnPageChangeListener
         }
     }
 
-//    class DatePickerFragment: DialogFragment() {
-//
-//        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//            val calendar = SimpleDateFormat.getDateInstance().calendar
+    class DatePickerFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val calendar = SimpleDateFormat.getInstance().calendar
+//            TODO(calendar.get(Calendar.YEAR) returns 1937)
 //            val year = calendar.get(Calendar.YEAR)
-//            val month = calendar.get(Calendar.MONTH)
-//            val day = calendar.get(Calendar.DAY_OF_MONTH)
-//            return DatePickerDialog(activity, this, year, month, day)
-//        }
-//        override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
-//            val fullDate = "$day/$month/$year"
-//            dateUntil.setText(fullDate, TextView.BufferType.EDITABLE)
-//        }
-//    }
+            val year = 2017
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            return DatePickerDialog(activity, this, year, month, day)
+        }
+        override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
+            val fullDate = "$day/$month/$year"
+            when (this.arguments["id"].toString()) {
+                R.id.dateUntil.toString() -> activity.findViewById<TextView>(R.id.dateUntil).text = fullDate
+                R.id.dateFrom.toString() -> activity.findViewById<TextView>(R.id.dateFrom).text = fullDate
+            }
+        }
+    }
 }
