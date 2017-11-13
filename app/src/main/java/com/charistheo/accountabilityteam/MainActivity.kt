@@ -71,12 +71,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dummyDate = SimpleDateFormat.getDateInstance().toString()
 
         //add dummy promises
-        myDummyPromise = DummyPromise("I promise not to smoke", "I will not smoke for a week", dummyDate!!)
+        myDummyPromise = DummyPromise("I promise not to smoke", "I will not smoke for a week", dummyDate!!, 5)
         myDummyPromiseList!!.add(myDummyPromise!!)
         myAdapter!!.notifyDataSetChanged()
 
 
-        buddyDummyPromise = DummyPromise("I promise to wash my teeth", "Twice a day, one in the morning one at night", dummyDate!!)
+        buddyDummyPromise = DummyPromise("I promise to wash my teeth", "Twice a day, one in the morning one at night", dummyDate!!, 10)
         buddyPromiseList!!.add(buddyDummyPromise!!)
         buddyAdapter!!.notifyDataSetChanged()
 

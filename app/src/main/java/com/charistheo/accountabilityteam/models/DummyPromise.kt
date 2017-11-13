@@ -2,23 +2,19 @@ package com.charistheo.accountabilityteam.models
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.text.Editable
-import android.text.format.DateUtils
-import android.util.EventLogTags
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
 import com.charistheo.accountabilityteam.R
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 
-class DummyPromise (t: String, d: String?, de: String) {
+class DummyPromise (t: String, d: String?, de: String, s: Int) {
     var title: String = t
     var description: String? = d
     var dateStart: String? = null
     var dateEnd: String = de
+    var stake: Int = s
 }
 
 class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
@@ -44,6 +40,7 @@ class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
             val description: TextView = itemView.findViewById<View>(R.id.promiseDescription) as TextView
             val dateStart = itemView.findViewById<View>(R.id.dateStart) as TextView
             val dateEnd = itemView.findViewById<View>(R.id.dateEnd) as TextView
+            val stakeView = itemView.findViewById<View>(R.id.stakeView) as TextView
             val ds = SimpleDateFormat.getDateInstance().toString()
 
             title.text = dummyPromise.title
@@ -51,6 +48,7 @@ class DummyPromiseAdapter(private val list: ArrayList<DummyPromise>,
             dateStart.text = ds
             dateEnd.text = dummyPromise.dateEnd
             dummyPromise.dateStart = ds
+            stakeView.text = "€ ${dummyPromise.stake}"
         }
     }
 
